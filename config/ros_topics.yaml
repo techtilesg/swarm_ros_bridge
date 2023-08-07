@@ -8,18 +8,18 @@
 ### list all <IPname: IP> here (IPname can be set arbitrarily) ###
 IP:
   self: '*'   # '*' stands for all self IPs
-  robot1: 192.168.1.101
-  robot2: 192.168.1.102
+  robot1: 10.8.0.35
+  robot2: 10.8.0.36
   test_local: 127.0.0.1 # just for local machine test
 
 ####### Send these ROS messages to remote robots #######
 ## if no send_topics needed, comment all these out
 send_topics:
-- topic_name: /imu # send the messages of this ROS topic
-  msg_type: sensor_msgs/Imu # ROS message type (rosmsg style)
-  max_freq: 50 # max sending frequency (Hz) int
-  srcIP: self # self IP
-  srcPort: 3001 # ports of send_topics should be different
+#- topic_name: /imu # send the messages of this ROS topic
+#  msg_type: sensor_msgs/Imu # ROS message type (rosmsg style)
+#  max_freq: 50 # max sending frequency (Hz) int
+#  srcIP: self # self IP
+#  srcPort: 3001 # ports of send_topics should be different
 
 - topic_name: /cmd_vel # send the messages of this ROS topic
   msg_type: geometry_msgs/Twist # ROS message type (rosmsg style)
@@ -27,27 +27,44 @@ send_topics:
   srcIP: self # self IP
   srcPort: 3002 # ports of send_topics should be different
 
-- topic_name: /string # send the messages of this ROS topic
-  msg_type: std_msgs/String # ROS message type (rosmsg style)
-  max_freq: 10 # max sending frequency (Hz) int
-  srcIP: self # self IP
-  srcPort: 3003 # ports of send_topics should be different
+- topic_name: /tf_exv # the received messages will be published in this topic
+  msg_type: tf2_msgs/TFMessage # ROS message type (rosmsg style)
+  srcIP: self # message source IPname
+  srcPort: 3003 # message source port
+
+- topic_name: /forklift_mission_controller/actions/goal
+  msg_type: forklift_mission_controller_msgs/LoadingUnloadingActionGoal # ROS message type (rosmsg style)
+  srcIP: self # message source IPname
+  srcPort: 3004 # message source port
+
+
+#- topic_name: /string # send the messages of this ROS topic
+#  msg_type: std_msgs/String # ROS message type (rosmsg style)
+#  max_freq: 10 # max sending frequency (Hz) int
+#  srcIP: self # self IP
+#  srcPort: 3003 # ports of send_topics should be different
 
 
 ####### receive these ROS messages from remote robots #######
 ## if no recv_topics needed, comment all these out
 recv_topics:
-- topic_name: /imu_recv # the received messages will be published in this topic
-  msg_type: sensor_msgs/Imu # ROS message type (rosmsg style)
-  srcIP: test_local # message source IPname
-  srcPort: 3001 # message source port
+#- topic_name: /imu_recv # the received messages will be published in this topic
+#  msg_type: sensor_msgs/Imu # ROS message type (rosmsg style)
+#  srcIP: test_local # message source IPname
+#  srcPort: 3001 # message source port
 
-- topic_name: /cmd_vel_recv # the received messages will be published in this topic
-  msg_type: geometry_msgs/Twist # ROS message type (rosmsg style)
-  srcIP: test_local # message source IPname
+- topic_name: /scan # the received messages will be published in this topic
+  msg_type: sensor_msgs/LaserScan # ROS message type (rosmsg style)
+  srcIP: robot1 # message source IPname
   srcPort: 3002 # message source port
 
-- topic_name: /string_recv # the received messages will be published in this topic
-  msg_type: std_msgs/String # ROS message type (rosmsg style)
-  srcIP: test_local # message source IPname
+- topic_name: /tf # the received messages will be published in this topic
+  msg_type: tf2_msgs/TFMessage # ROS message type (rosmsg style)
+  srcIP: robot1 # message source IPname
   srcPort: 3003 # message source port
+
+#- topic_name: /scan # the received messages will be published in this topic
+#  msg_type: sensor_msgs/LaserScan # ROS message type (rosmsg style)
+#  srcIP: robot1 # message source IPname
+#  srcPort: 3003 # message source port
+

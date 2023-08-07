@@ -8,6 +8,9 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   sensor_msgs
+  tf2_msgs
+  sensor_msgs
+  forklift_mission_controller_msgs
 )
 
 catkin_package(

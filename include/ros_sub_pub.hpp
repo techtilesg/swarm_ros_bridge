@@ -35,9 +35,18 @@
 #define MSG_TYPE3 "std_msgs/String"
 #define MSG_CLASS3 std_msgs::String
 
-// #include <xxx/yy.h>
-// #define MSG_TYPE4 "xxx/yy"
-// #define MSG_CLASS4 xxx::yy
+#include <tf2_msgs/TFMessage.h>
+#define MSG_TYPE4 "tf2_msgs/TFMessage"
+#define MSG_CLASS4 tf2_msgs::TFMessage
+
+#include <sensor_msgs/LaserScan.h>
+#define MSG_TYPE5 "sensor_msgs/LaserScan"
+#define MSG_CLASS5 sensor_msgs::LaserScan
+
+#include <forklift_mission_controller_msgs/LoadingUnloadingActionGoal.h>
+#define MSG_TYPE6 "forklift_mission_controller_msgs/LoadingUnloadingActionGoal"
+#define MSG_CLASS6 forklift_mission_controller_msgs::LoadingUnloadingActionGoal
+
 
 // ......
 
